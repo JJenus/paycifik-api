@@ -31,6 +31,7 @@ export function errorHandler(
 		res.status(HTTPStatusCode.CONFLICT);
 	}
 
+
 	const response: ErrorResponse = {
 		message: error.message,
 		stack:
@@ -65,6 +66,8 @@ export function errorHandler(
 			response.message = errors;
 		}
 	}
+
+	console.error(response)
 
 	res.json(response);
 }

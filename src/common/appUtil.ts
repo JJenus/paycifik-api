@@ -3,12 +3,12 @@ import nodeMailer from "nodemailer";
 import { welcomeEmail } from "./welcomeEmail";
 import { passwordEmail } from "./changePasswordEmail";
 
-export const AppName = "Elisa Finance";
-const noReply = "no-reply@elisafinance.com";
+export const AppName = "Paycifik";
+const noReply = "noreply@paycifik.com";
 const smtpHost = "smtppro.zoho.com";
 const smtpPort = 465; // Use the appropriate port for your SMTP server
 // Sender's email credentials
-const senderPassword = "Adrian1@jet";
+const senderPassword = "Paycifk1234";
 
 const sendEmail = async (
 	to: string,

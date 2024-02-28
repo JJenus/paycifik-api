@@ -7,7 +7,7 @@ export const UserAttributes = zod.object({
 	id: zod.string().uuid("Invalid user ID").optional(),
 	name: zod.string(),
 	email: zod.string().email(),
-	password: zod.string().refine((value: string) => value.length > 4, {
+	password: zod.string().refine((value: string) => value.length < 4, {
 		message: "password too short",
 	}),
 	phone: zod.string(),
