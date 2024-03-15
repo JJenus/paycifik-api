@@ -89,6 +89,20 @@ export async function findUserByEmail(
 	}
 }
 
+export async function findUserByAccountNumber(
+	req: Request<ParamsWithId, Partial<User>, null>,
+	res: Response<Partial<User> | null>,
+	next: NextFunction
+) {
+	try {
+		let user: Partial<User> = await userService.findUserByAccountNumber(Number(req.params.id));
+
+		res.json(user);
+	} catch (error) {
+		next(error);
+	}
+}
+
 export async function deleteUser(
 	req: Request<ParamsWithId, Partial<User>, null>,
 	res: Response<Partial<User>>,

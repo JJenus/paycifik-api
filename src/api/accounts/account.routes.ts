@@ -2,7 +2,7 @@ import { Router } from "express";
 import * as accountController from "./account.controller";
 import { validateRequest } from "../../common/middlewares";
 import { ParamsWithId } from "../../interfaces/ParamsWithId";
-import { updateBalance } from "./account.model";
+import { updateAccount, updateBalance } from "./account.model";
 
 const router = Router();
 
@@ -16,6 +16,12 @@ router.post(
 	"/",
 	validateRequest({ body: updateBalance }),
 	accountController.updateBalance
+);
+
+router.put(
+	"/",
+	validateRequest({ body: updateAccount }),
+	accountController.updateUserAccount
 );
 
 // router.delete(

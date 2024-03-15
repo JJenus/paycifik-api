@@ -30,6 +30,12 @@ router.post(
 	userController.findUserByEmail
 );
 
+router.get(
+	"/find/:id",
+	validateRequest({ params: ParamsWithId }),
+	userController.findUserByAccountNumber
+);
+
 router.delete(
 	"/:id",
 	validateRequest({ params: ParamsWithId }),

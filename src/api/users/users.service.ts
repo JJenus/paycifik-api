@@ -2,6 +2,8 @@
 import { ZodError, ZodIssue, ZodIssueCode } from "zod";
 import User, { UserAttributes, UserUpdateAttributes } from "./users.model";
 import bcrypt from "bcrypt";
+import * as accountService from "../accounts/account.service";
+
 
 
 export async function findAll(): Promise<User[]> {
@@ -67,6 +69,19 @@ export async function findUserByEmail(email: string): Promise<User> {
 export async function findUserById(userId: string): Promise<User> {
 	try {
 		const user = await User.findByPk(userId);
+		if (!user) {
+			throw new Error();
+		}
+		return user;
+	} catch (error) {
+		throw new Error("User not found");
+	}
+}
+
+export async function findUserByAccountNumber(accountNumber: number): Promise<User> {
+	try {
+		const account = await accountService.findUserByAccountNumber(accountNumber);
+		const user = await User.findByPk(account.userId);
 		if (!user) {
 			throw new Error();
 		}

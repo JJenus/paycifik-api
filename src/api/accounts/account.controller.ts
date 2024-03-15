@@ -4,6 +4,7 @@ import * as Users from "../users/users.service";
 
 import Account, {
 	AccountAttr,
+	updateAccount,
 	updateBalance as Balance,
 } from "./account.model";
 import { ParamsWithId } from "../../interfaces/ParamsWithId";
@@ -40,6 +41,20 @@ export async function updateBalance(
 		account.set("amount", balance + account.amount);
 
 		await account.save();
+
+		res.json(account);
+	} catch (error) {
+		next(error);
+	}
+}
+
+export async function updateUserAccount(
+	req: Request<{}, Partial<updateAccount>, updateAccount>,
+	res: Response<Account>,
+	next: NextFunction
+) {
+	try {
+		const account: Account = await accountService.updateUserAccount(req.body);
 
 		res.json(account);
 	} catch (error) {

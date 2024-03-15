@@ -10,8 +10,9 @@ import notificationRouter from "./notifications/notifications.routes";
 import securityLogRouter from "./securityLogs/securityLogs.routes";
 import beneficiaryRouter from "./beneficiaries/beneficiaries.routes";
 import transactionRouter from "./transactions/transactions.routes";
-import accountRouter from "./accounts/account.routes"
+import accountRouter from "./accounts/account.routes";
 import authRouter from "./auth/auth.routes";
+import accountLevelRouter from "./accountLevels/accountLevels.routes";
 
 import { verifyToken } from "../common/middlewares";
 
@@ -31,6 +32,7 @@ apiRouter.use("/security-logs", verifyToken, securityLogRouter);
 apiRouter.use("/beneficiaries", verifyToken, beneficiaryRouter);
 apiRouter.use("/transactions", verifyToken, transactionRouter);
 apiRouter.use("/account", verifyToken, accountRouter);
+apiRouter.use("/account-levels", verifyToken, accountLevelRouter);
 
 apiRouter.use("/auth", authRouter);
 

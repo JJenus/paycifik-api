@@ -1,6 +1,6 @@
 import sequelize from "../../common/db";
 import { Model, DataTypes } from "sequelize";
-import zod from "zod";
+import zod, { number } from "zod";
 import UserAccountStatus from "./account.status";
 import AccountStatus from "./account.status";
 import { Currency } from "../../interfaces/Currency";
@@ -10,11 +10,14 @@ export const AccountAttr = zod.object({
 	userId: zod.string().uuid(),
 	currencyId: zod.string(),
 	amount: zod.number(),
+	accountNumber: zod.number(),
+	accountLevel: zod.number(),
 	status: zod.nativeEnum(UserAccountStatus),
 });
 
 export const updateBalance = zod.object({
 	email: zod.string(),
+	accountNumber: zod.number().optional(),
 	amount: zod.number(),
 });
 
@@ -25,6 +28,8 @@ export const updateAccount = zod.object({
 	userId: zod.string().uuid(),
 	currencyId: zod.string().optional(),
 	amount: zod.number().optional(),
+	accountNumber: zod.number().optional(),
+	accountLevel: zod.number().optional(),
 	status: zod.nativeEnum(UserAccountStatus).optional(),
 });
 
@@ -39,6 +44,9 @@ class Account extends Model<AccountAttr, AccountAttr> implements AccountAttr {
 	declare amount: number;
 	declare status: AccountStatus;
 	declare currency: Currency;
+	declare accountNumber: number;
+	declare accountLevel: number;
+
 }
 
 Account.init(
@@ -55,7 +63,14 @@ Account.init(
 			type: DataTypes.STRING,
 		},
 		amount: {
+			type: DataTypes.BIGINT,
+		},
+		accountNumber: {
+			type: DataTypes.BIGINT,
+		},
+		accountLevel: {
 			type: DataTypes.INTEGER,
+			defaultValue: 1
 		},
 		status: {
 			type: DataTypes.ENUM(...Object.values(UserAccountStatus)),

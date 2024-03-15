@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "production") {
 	pass = process.env.DB_PASSWORD || "@Asdf1234T";
 	host = process.env.DB_HOST || "mysql-paycifik.alwaysdata.net";
 }
-
+ 
 let sequelize: Sequelize = new Sequelize(db, user, pass, {
 	host: host,
 	dialect: "mysql",
