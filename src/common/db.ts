@@ -6,10 +6,10 @@ let pass = process.env.DB_PASSWORD || "";
 let host = process.env.DB_HOST || "localhost";
 
 if (process.env.NODE_ENV === "production") {
-	db = process.env.DB_NAME || "paycifik_db";
-	user = process.env.DB_USER || "paycifik";
-	pass = process.env.DB_PASSWORD || "@Asdf1234T";
-	host = process.env.DB_HOST || "mysql-paycifik.alwaysdata.net";
+	db = "paycifik_db";
+	user = "paycifik";
+	pass = "@Asdf1234T";
+	host = "mysql-paycifik.alwaysdata.net";
 }
  
 let sequelize: Sequelize = new Sequelize(db, user, pass, {

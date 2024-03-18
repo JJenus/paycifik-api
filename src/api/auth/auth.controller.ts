@@ -46,6 +46,8 @@ export const registerUser = async (
 
 		try {
 			await sendWelcomeEmail(user);
+		} catch (err) {}
+		try {
 			await Notifications.createNotification({
 				title: "Account creation successful",
 				userId: user.id!,
@@ -204,7 +206,6 @@ export const requestEmailVerification = async (
 	try {
 		const user = await findUserByEmail(req.body.email!);
 
-		
 		res.send();
 	} catch (error) {
 		next(error);
