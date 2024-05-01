@@ -41,18 +41,8 @@ if (!process.env.DEBUG) {
 app.use(expressWinston.logger(loggerOptions));
 
 app.get("/", (req: Request, res: Response<MessageResponse>) => {
-	const token = jwt.sign(
-		{
-			name: "Bongi",
-			age: "Ladi",
-		},
-		"secretKey",
-		{ expiresIn: "1h" }
-	);
-	console.log(token);
-	console.log(jwt.verify(token, "secretKey"));
 	res.json({
-		message: "Welcome to zipay api",
+		message: "Welcome to paycifik api",
 	});
 });
 
