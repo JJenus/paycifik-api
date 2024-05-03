@@ -85,7 +85,7 @@ export const passwordEmail = `<!DOCTYPE html>
 													height: 50px;
 													margin-top: 10px;
 												"
-												src="https://paycifik.com/assets/media/favicon/favicon.ico"
+												src="https://paycifik.com/assets/media/logos/paycifik.png"
 											/>
 										</a>
 										<div

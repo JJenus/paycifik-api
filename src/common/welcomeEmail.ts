@@ -3,7 +3,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Elisa Finance</title>
+		<title>Paycifik</title>
 	</head>
 	<body
 		style="
@@ -69,7 +69,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 									<!--begin:Logo-->
 									<div style="margin-bottom: 10px">
 										<a
-											href="https://elisafinance.com/"
+											href="https://www.paycifik.com/"
 											rel="noopener"
 											target="_blank"
 											style="
@@ -85,7 +85,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 													height: 50px;
 													margin-top: 10px;
 												"
-												src="https://elisafinance.com/assets/media/favicon/favicon.ico"
+												src="https://www.paycifik.com/assets/media/logos/paycifik.png"
 											/>
 										</a>
 										<div
@@ -97,7 +97,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 												font-size: 20px;
 											"
 										>
-											Elisa Finance
+											Paycifik
 										</div>
 									</div>
 									<!--end:Logo-->
@@ -106,7 +106,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 									<div style="margin-bottom: 15px">
 										<img
 											alt="Logo"
-											src="https://elisafinance.com/assets/media/email/icon-positive-vote-1.png"
+											src="https://www.paycifik.com/assets/media/email/icon-positive-vote-1.png"
 										/>
 									</div>
 									<!--end:Media-->
@@ -148,7 +148,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 
 									<!--begin:Action-->
 									<a
-										href="https://elisafinance.com/verify-email/?id={{token}}"
+										href="https://www.paycifik.com/verify-email/?id={{token}}"
 										target="_blank"
 										style="
 											background-color: #3e97ff;
@@ -215,7 +215,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 										>
 											<img
 												alt="Logo"
-												src="https://elisafinance.com/assets/media/email/icon-polygon.png"
+												src="https://www.paycifik.com/assets/media/email/icon-polygon.png"
 											/>
 
 											<span
@@ -297,7 +297,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 										>
 											<img
 												alt="Logo"
-												src="https://elisafinance.com/assets/media/email/icon-polygon.png"
+												src="https://www.paycifik.com/assets/media/email/icon-polygon.png"
 											/>
 
 											<span
@@ -377,7 +377,7 @@ export const welcomeEmail = `<!DOCTYPE html>
 										>
 											<img
 												alt="Logo"
-												src="https://elisafinance.com/assets/media/email/icon-polygon.png"
+												src="https://www.paycifik.com/assets/media/email/icon-polygon.png"
 											/>
 
 											<span
@@ -472,11 +472,11 @@ export const welcomeEmail = `<!DOCTYPE html>
 								<p style="margin-bottom: 4px">
 									You may reach us at
 									<a
-										href="https://elisafinance.com/"
+										href="https://www.paycifik.com/"
 										rel="noopener"
 										target="_blank"
 										style="font-weight: 600"
-										>elisafinance.com</a
+										>paycifik.com</a
 									>.
 								</p>
 								<p>We serve Mon-Fri, 9AM-18AM</p>
@@ -492,12 +492,12 @@ export const welcomeEmail = `<!DOCTYPE html>
 								<a href="#" style="margin-right: 10px"
 									><img
 										alt="Logo"
-										src="https://elisafinance.com/assets/media/email/icon-facebook.png"
+										src="https://www.paycifik.com/assets/media/email/icon-facebook.png"
 								/></a>
 								<a href="#"
 									><img
 										alt="Logo"
-										src="https://elisafinance.com/assets/media/email/icon-twitter.png"
+										src="https://www.paycifik.com/assets/media/email/icon-twitter.png"
 								/></a>
 							</td>
 						</tr>
@@ -516,9 +516,9 @@ export const welcomeEmail = `<!DOCTYPE html>
 								"
 							>
 								<p>
-									&copy Copyright Elisa Finance.
+									&copy Copyright Paycifik.
 									<a
-										href="https://elisafinance.com/"
+										href="https://www.paycifik.com/"
 										rel="noopener"
 										target="_blank"
 										style="

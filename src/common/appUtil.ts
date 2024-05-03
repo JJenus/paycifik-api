@@ -6,9 +6,9 @@ import { passwordEmail } from "./changePasswordEmail";
 export const AppName = "Paycifik";
 const noReply = "noreply@paycifik.com";
 const smtpHost = "smtppro.zoho.com";
-const smtpPort = 465; // Use the appropriate port for your SMTP server
+const smtpPort = 465; //465; 587 // Use the appropriate port for your SMTP server
 // Sender's email credentials
-const senderPassword = "Paycifk1234";
+const senderPassword = "@Paycifk12345"; //noreply@paycifik.com 
 
 const sendEmail = async (
 	to: string,
@@ -38,7 +38,7 @@ const sendEmail = async (
 
 		console.log("Message sent: %s", info.messageId);
 	} catch (error) {
-		console.log(error);
+		console.log("EMAIL ERROR: ", error);
 	}
 };
 

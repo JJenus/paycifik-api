@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 let db = process.env.DB_NAME || "paycifik_db";
-let user = process.env.DB_USER || "root";
+let user = process.env.DB_USER || "root"; 
 let pass = process.env.DB_PASSWORD || "";
 let host = process.env.DB_HOST || "localhost";
 
