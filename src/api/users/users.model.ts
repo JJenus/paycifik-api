@@ -12,10 +12,11 @@ export const UserAttributes = zod.object({
 	}),
 	phone: zod.string(),
 	imgUrl: zod.string().optional(),
+	idUrl: zod.string().optional(),
 	address: zod.string(),
 	city: zod.string(),
 	country: zod.string(),
-	dob: zod.date().optional(),
+	dob: zod.any().optional(),
 	verified: zod.boolean().optional(),
 	emailVerified: zod.boolean().optional(),
 	userType: zod.string().optional(),
@@ -30,13 +31,14 @@ export const UserUpdateAttributes = zod.object({
 	phone: zod.string().optional(),
 	imgUrl: zod.string().optional(),
 	address: zod.string().optional(),
+	idUrl: zod.string().optional(),
 	city: zod.string().optional(),
 	country: zod.string().optional(),
-	dob: zod.date().optional(),
+	dob: zod.any().optional(),
 	verified: zod.boolean().optional(),
 	emailVerified: zod.boolean().optional(),
 	userType: zod.string().optional(),
-	account: AccountAttr.optional()
+	account: AccountAttr.optional(),
 });
 
 export type UserUpdateAttributes = zod.infer<typeof UserUpdateAttributes>;
@@ -51,6 +53,7 @@ class User
 	declare password: string;
 	declare phone: string;
 	declare imgUrl: string;
+	declare idUrl: string;
 	declare address: string;
 	declare city: string;
 	declare country: string;
@@ -96,6 +99,10 @@ User.init(
 			type: DataTypes.STRING,
 			allowNull: true,
 		},
+		idUrl: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
 		address: {
 			type: DataTypes.STRING,
 			allowNull: true,
@@ -135,6 +142,6 @@ User.init(
 	}
 );
 
-User.sync();
+User.sync({ alter: true });
 
 export default User;

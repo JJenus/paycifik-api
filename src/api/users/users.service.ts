@@ -93,8 +93,9 @@ export async function findUserByAccountNumber(accountNumber: number): Promise<Us
 
 export async function updateUser(
 	userId: string,
-	userData: Partial<User>
+	userData: Partial<UserAttributes>
 ): Promise<Partial<User>> {
+	// console.log("\n\nIT GETS HERE\n\n")
 	// Retrieve the user
 	const user = await findUserById(userId);
 

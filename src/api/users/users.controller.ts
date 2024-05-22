@@ -19,7 +19,7 @@ export async function createUser(
 }
 
 export async function updateUser(
-	req: Request<ParamsWithId, Partial<User>, UserAttributes>,
+	req: Request<ParamsWithId, Partial<UserAttributes>, Partial<UserAttributes>>,
 	res: Response<Partial<User>>,
 	next: NextFunction
 ) {
