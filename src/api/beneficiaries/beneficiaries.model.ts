@@ -4,7 +4,7 @@ import sequelize from "../../common/db";
 
 export const BeneficiaryAttr = zod.object({
 	id: zod.string().uuid("invalid beneficiary id").optional(),
-	userId: zod.string().uuid("invalid user id").optional(),
+	userId: zod.string().uuid("invalid beneficiary id").optional(),
 	name: zod.string(),
 	destinationAccount: zod
 		.string()

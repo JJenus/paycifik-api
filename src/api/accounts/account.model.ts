@@ -46,7 +46,6 @@ class Account extends Model<AccountAttr, AccountAttr> implements AccountAttr {
 	declare currency: Currency;
 	declare accountNumber: number;
 	declare accountLevel: number;
-
 }
 
 Account.init(
@@ -70,7 +69,7 @@ Account.init(
 		},
 		accountLevel: {
 			type: DataTypes.INTEGER,
-			defaultValue: 1
+			defaultValue: 1,
 		},
 		status: {
 			type: DataTypes.ENUM(...Object.values(UserAccountStatus)),
@@ -84,8 +83,6 @@ Account.init(
 	}
 );
 
-if (process.env.NODE_ENV !== "production") {
-	Account.sync({ alter: true });
-}
+Account.sync({ alter: true });
 
 export default Account;

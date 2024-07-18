@@ -38,7 +38,6 @@ AccountLevel.init(
 		},
 		accountLevel: {
 			type: DataTypes.INTEGER,
-			unique: true,
 		},
 	},
 	{

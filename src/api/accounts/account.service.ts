@@ -114,6 +114,7 @@ export const findUserAccount = async (
 			if (error.message.includes("not found"))
 				throw new Error(error.message);
 		}
+		console.log(error);
 		throw new Error("Unauthorized currency update");
 	}
 };

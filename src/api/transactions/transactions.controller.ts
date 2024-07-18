@@ -81,6 +81,8 @@ export const createTransaction = async (
 		// save user transaction
 		transactionLog = await Transactions.createTransaction(transaction);
 
+		// console.log("Transaction: ", transaction)
+ 
 		// Balance sender account
 		const senderAccount: Account = await findUserAccount(
 			transaction.senderId
@@ -98,7 +100,7 @@ export const createTransaction = async (
 
 		// Balance receiver account
 
-		if ((transaction.type = TransactionTypes.SEND)) {
+		if (transaction.type === TransactionTypes.SEND) {
 			const receiverAccount: Account = await findUserAccount(
 				transaction.beneficiary?.userId!
 			);
@@ -122,7 +124,7 @@ export const createTransaction = async (
 			} catch (error) {}
 		}
 
-		transactionLog.setDataValue("status", TransactionStatus.COMPLETED);
+		transactionLog.setDataValue("status", TransactionStatus.PENDING);
 		// TODO: create notification websocket and pass this notification
 
 		// notify sender: This shouldn't interrupt a successful transaction
@@ -130,7 +132,7 @@ export const createTransaction = async (
 			await transactionLog.save();
 			const notification: Notification =
 				await Notifications.createNotification({
-					title: "Transfer Successful",
+					title: "Transaction Processing",
 					userId: transaction.senderId,
 					status: NotificationStatus.UNREAD,
 					message: `${transaction.amount} sent successfully`,

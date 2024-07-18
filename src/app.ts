@@ -35,10 +35,13 @@ const loggerOptions: expressWinston.LoggerOptions = {
 	),
 };
 
-if (!process.env.DEBUG) {
+if (!process.env.DEBUG || process.env.NODE_ENV === "production") {
 	loggerOptions.meta = false; // when not debugging, make terse
 }
-app.use(expressWinston.logger(loggerOptions));
+
+if (process.env.NODE_ENV !== "production") {
+	app.use(expressWinston.logger(loggerOptions));
+}
 
 app.get("/", (req: Request, res: Response<MessageResponse>) => {
 	res.json({
@@ -51,4 +54,4 @@ app.use("/api", api);
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
-export default app; 
+export default app;
