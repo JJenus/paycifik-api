@@ -1,7 +1,7 @@
 # Logs
 logs
 *.log
-.file
+# .file
 
 # Node.js
 node_modules/
