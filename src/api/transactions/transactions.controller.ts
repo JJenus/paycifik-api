@@ -174,3 +174,43 @@ export const createTransaction = async (
 		next(error);
 	}
 };
+
+
+export const updateTransaction = async (
+	req: Request<{}, Transaction, TransactionAttr>,
+	res: Response<Transaction>,
+	next: NextFunction
+) => {
+	let transactionLog: Transaction = await Transactions.findTransactionById(
+		req.body.id!
+	);
+
+	if (!transactionLog) {
+		throw new Error("Invalid transaction id");
+	}
+
+	// save user transaction
+	transactionLog.setDataValue("status", req.body.status);
+	transactionLog.setDataValue("notes", req.body.notes);
+	// TODO: create notification websocket and pass this notification
+
+	// notify sender: This shouldn't interrupt a successful transaction
+	await transactionLog.save();
+
+	const notification: Notification = await Notifications.createNotification({
+		title:
+			transactionLog.status === TransactionStatus.COMPLETED
+				? "Transaction Successful"
+				: "Transaction Processing",
+		userId: transactionLog.senderId,
+		status: NotificationStatus.UNREAD,
+		message: `${transactionLog.amount} ${
+			transactionLog.status === TransactionStatus.PENDING
+				? "Sent to bank"
+				: transactionLog.status
+		}`,
+		type: NotificationType.CREDIT,
+	});
+
+	res.json(transactionLog);
+};
