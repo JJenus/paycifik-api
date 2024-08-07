@@ -14,6 +14,12 @@ import {
 } from "../notifications/notifications";
 import Notification from "../notifications/notifications.model";
 import { findUserById } from "../users/users.service";
+import { getAppSettings } from "../appSettings/appSettings.service";
+import currency from "currency.js";
+
+const money = (value: string | number, symbol: string) => {
+	return currency(value, { symbol: symbol, pattern: `! #` }).format();
+};
 
 export const findUserTransactions = async (
 	req: Request<ParamsWithId>,
@@ -82,7 +88,7 @@ export const createTransaction = async (
 		transactionLog = await Transactions.createTransaction(transaction);
 
 		// console.log("Transaction: ", transaction)
- 
+
 		// Balance sender account
 		const senderAccount: Account = await findUserAccount(
 			transaction.senderId
@@ -144,10 +150,7 @@ export const createTransaction = async (
 	} catch (error) {
 		try {
 			if (transactionLog) {
-				transactionLog.setDataValue(
-					"status",
-					TransactionStatus.FAILED
-				);
+				transactionLog.setDataValue("status", TransactionStatus.FAILED);
 				await transactionLog.save();
 			} else {
 				transaction.status = TransactionStatus.FAILED;
@@ -175,7 +178,6 @@ export const createTransaction = async (
 	}
 };
 
-
 export const updateTransaction = async (
 	req: Request<{}, Transaction, TransactionAttr>,
 	res: Response<Transaction>,
@@ -189,6 +191,8 @@ export const updateTransaction = async (
 		throw new Error("Invalid transaction id");
 	}
 
+	const settings = await getAppSettings();
+
 	// save user transaction
 	transactionLog.setDataValue("status", req.body.status);
 	transactionLog.setDataValue("notes", req.body.notes);
@@ -197,18 +201,30 @@ export const updateTransaction = async (
 	// notify sender: This shouldn't interrupt a successful transaction
 	await transactionLog.save();
 
+	const title = `Transaction ${
+		transactionLog.status === TransactionStatus.PENDING
+			? "processing"
+			: transactionLog.status
+	}`;
+
+	const message =
+		transactionLog.status === TransactionStatus.FAILED
+			? `Failed to complete transaction to ${req.body.beneficiary!.name}.`
+			: transactionLog.status === TransactionStatus.PENDING
+			? `Processing transaction of ${money(
+					transactionLog.amount,
+					settings.defaultBaseCurrency
+			  )} to ${req.body.beneficiary!.name}.`
+			: `Transaction of  ${money(
+					transactionLog.amount,
+					settings.defaultBaseCurrency
+			  )} to ${req.body.beneficiary!.name}. successful.`;
+
 	const notification: Notification = await Notifications.createNotification({
-		title:
-			transactionLog.status === TransactionStatus.COMPLETED
-				? "Transaction Successful"
-				: "Transaction Processing",
+		title: title,
 		userId: transactionLog.senderId,
 		status: NotificationStatus.UNREAD,
-		message: `${transactionLog.amount} ${
-			transactionLog.status === TransactionStatus.PENDING
-				? "Sent to bank"
-				: transactionLog.status
-		}`,
+		message: message,
 		type: NotificationType.CREDIT,
 	});
 

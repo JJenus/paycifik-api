@@ -18,7 +18,7 @@ router.post(
 	AccountLevelController.createAccountLevel
 );
 router.put(
-	"/",
+	"/:id",
 	validateRequest({ body: AccountLevelAttr }),
 	AccountLevelController.updateAccountLevel
 );
