@@ -5,10 +5,10 @@ import { passwordEmail } from "./changePasswordEmail";
 
 export const AppName = "Paycifik";
 const noReply = "noreply@paycifik.com";
-const smtpHost = "smtppro.zoho.com";
+const smtpHost = "smtp.zoho.com";
 const smtpPort = 465; //465; 587 // Use the appropriate port for your SMTP server
 // Sender's email credentials
-const senderPassword = "@Paycifk12345"; //noreply@paycifik.com 
+const senderPassword = "@Paycifik12345"; //noreply@paycifik.com 
 
 const sendEmail = async (
 	to: string,
