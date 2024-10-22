@@ -4,8 +4,6 @@ import User, { UserAttributes, UserUpdateAttributes } from "./users.model";
 import bcrypt from "bcrypt";
 import * as accountService from "../accounts/account.service";
 
-
-
 export async function findAll(): Promise<User[]> {
 	try {
 		const users = await User.findAll();
@@ -41,7 +39,6 @@ export async function createUser(
 	}
 
 	try {
-
 		const passwordHash = await bcrypt.hash(userData.password, 10);
 
 		userData.password = passwordHash;
@@ -78,9 +75,13 @@ export async function findUserById(userId: string): Promise<User> {
 	}
 }
 
-export async function findUserByAccountNumber(accountNumber: number): Promise<User> {
+export async function findUserByAccountNumber(
+	accountNumber: number
+): Promise<User> {
 	try {
-		const account = await accountService.findUserByAccountNumber(accountNumber);
+		const account = await accountService.findUserByAccountNumber(
+			accountNumber
+		);
 		const user = await User.findByPk(account.userId);
 		if (!user) {
 			throw new Error();
@@ -108,19 +109,18 @@ export async function updateUser(
 		throw new Error("Attempt to change password");
 	}
 
-	user.setAttributes(userData);
+	const filteredUserData = Object.fromEntries(
+        Object.entries(userData).filter(([_, value]) => value != null)
+    );
+	
 
-	// if (userData?.email) {
-	// 	user.email = userData.email;
-	// }
-	// if (userData?.name) {
-	// 	user.name = userData.name;
-	// }
+	console.log(userData, user.toJSON());
 
 	try {
-		await user.save();
+		await user.update(filteredUserData);
 		return user;
 	} catch (error) {
+		console.log(error);
 		throw new Error("Failed to update user");
 	}
 }

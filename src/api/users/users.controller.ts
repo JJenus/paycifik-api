@@ -19,7 +19,11 @@ export async function createUser(
 }
 
 export async function updateUser(
-	req: Request<ParamsWithId, Partial<UserAttributes>, Partial<UserAttributes>>,
+	req: Request<
+		ParamsWithId,
+		Partial<UserAttributes>,
+		Partial<UserAttributes>
+	>,
 	res: Response<Partial<User>>,
 	next: NextFunction
 ) {
@@ -95,7 +99,9 @@ export async function findUserByAccountNumber(
 	next: NextFunction
 ) {
 	try {
-		let user: Partial<User> = await userService.findUserByAccountNumber(Number(req.params.id));
+		let user: Partial<User> = await userService.findUserByAccountNumber(
+			Number(req.params.id)
+		);
 
 		res.json(user);
 	} catch (error) {
